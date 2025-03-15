@@ -23,20 +23,31 @@ end
 
 loadGame()
 
-function sendCrankTicks()
-	if playdate.isCrankDocked() then
-		print(0)
-	end
-	local crankTicks = playdate.getCrankTicks(10)
-	print(math.abs(crankTicks))
-	playdate.timer.new(1000, sendCrankTicks)
-end
+--function sendCrankTicks()
+--	if playdate.isCrankDocked() then
+--		print(0)
+--	end
+--	local crankTicks = playdate.getCrankTicks(2)
+--	print(math.abs(crankTicks * 2))
+--	playdate.timer.new(500, sendCrankTicks)
+--end
+crankedCount = 0
+local myInputHandlers = {
+	cranked = function(change, acceleratedChange)
+		crankedCount = crankedCount + 1
+		if crankedCount == 10 then
+			crankedCount = 0
+			print("Cranked")
+		end
+    end,
+}
+playdate.inputHandlers.push(myInputHandlers)
 
-countdownTimer = playdate.timer.new(0, sendCrankTicks)
+--countdownTimer = playdate.timer.new(0, sendCrankTicks)
 
 function playdate.update()
 	updateGame()
 	drawGame()
 	playdate.drawFPS(0,0) -- FPS widget
-	playdate.timer.updateTimers()
+	--playdate.timer.updateTimers()
 end
