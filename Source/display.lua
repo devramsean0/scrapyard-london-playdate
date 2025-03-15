@@ -25,6 +25,5 @@ function thingy:draw(counter)
     local label = self.label;
 	local counterLabel = self.counterLabel;
     gfx.drawTextInRect("Uhh idk", label.x, label.y, label.width, label.height)
-	print(counter)
 	gfx.drawTextInRect("Counter: " .. counter, counterLabel.x, counterLabel.y, counterLabel.width, counterLabel.height)
 end
