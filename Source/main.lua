@@ -11,11 +11,6 @@ local function loadGame()
 	gfx.setFont(font) -- DEMO
 end
 
-local function drawGame()
-	gfx.clear()
-	thingy:draw()
-end
-
 loadGame()
 
 crankedCount = 0
@@ -29,6 +24,11 @@ local myInputHandlers = {
     end,
 }
 playdate.inputHandlers.push(myInputHandlers)
+
+function drawGame()
+	gfx.clear()
+	thingy:draw(crankedCount)
+end
 
 
 function playdate.update()
